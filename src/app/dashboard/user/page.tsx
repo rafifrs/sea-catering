@@ -330,7 +330,7 @@ export default function UserDashboard() {
           transition={{ delay: 0.6, duration: 0.6 }}
         >
           <Button
-            onClick={() => window.history.back()}
+            onClick={() => window.location.href = "/"}
             className="bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-full px-8 py-3 text-lg font-medium"
           >
             <ArrowLeft className="mr-2 h-5 w-5" />
