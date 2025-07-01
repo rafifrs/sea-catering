@@ -19,6 +19,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion'
 import { MealPlanModalProps } from '@/types/meal-plans'
 import { Meal } from '@prisma/client'
+import Link from 'next/link'
 
 const MealPlanModal: React.FC<MealPlanModalProps> = ({ mealPlan, isOpen, onClose }) => {
   const [isLiked, setIsLiked] = useState(false)
@@ -360,7 +361,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ mealPlan, isOpen, onClose
           >
             <div className="text-left">
               <div className="text-2xl font-bold text-orange-600">Rp.{mealPlan.price.toString()}</div>
-              <div className="text-sm text-gray-500">One-time payment</div>
+              <div className="text-sm text-gray-500">per week</div>
             </div>
             <div className="flex gap-3">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -369,7 +370,10 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ mealPlan, isOpen, onClose
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button className="bg-orange-500 hover:bg-orange-600 shadow-lg">
+                <Button 
+                  onClick={() => window.location.href = `/subscription?planId=${mealPlan.id}`}
+                  className="bg-orange-500 hover:bg-orange-600 shadow-lg"
+                >
                   <ShoppingCart className="w-4 h-4 mr-2" />
                   Select This Plan
                 </Button>
