@@ -48,3 +48,31 @@ model Testimonial {
   user          User?    @relation(fields: [userId], references: [id])
   userId        String?
 }
+
+model MealPlan {
+  id          String   @id @default(cuid())
+  name        String
+  price       Decimal
+  description String
+  duration    String   // e.g., "Weekly", "Monthly"
+  category    String   // e.g., "Weight Loss", "Muscle Gain", "Balanced"
+  features    String[] // Array of plan features
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  meals       Meal[]
+}
+
+model Meal {
+  id           String   @id @default(cuid())
+  name         String
+  description  String
+  calories     Int?
+  protein      Float?
+  carbs        Float?
+  fats         Float?
+  mealType     String   // "Breakfast", "Lunch", "Dinner", "Snack"
+  
+  mealPlanId   String
+  mealPlan     MealPlan @relation(fields: [mealPlanId], references: [id])
+}
