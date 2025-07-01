@@ -1,6 +1,5 @@
-# SEA Catering - Healthy Meals Delivery Platform
+# SEA Catering
 
-![SEA Catering](https://img.shields.io/badge/SEA%20Catering-Healthy%20Meals-green?style=for-the-badge)
 ![Next.js](https://img.shields.io/badge/Next.js-13+-black?style=for-the-badge&logo=next.js)
 ![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript)
@@ -75,42 +74,39 @@ SEA Catering is a comprehensive web application for managing customizable health
 
 ## ✅ Prerequisites
 
-Sebelum menjalankan project ini, pastikan kamu sudah menginstal dan menyiapkan hal-hal berikut:
-
 ---
+### 1. Node.js (v20 or higher)
 
-### 1. Node.js (v20 atau lebih tinggi)
-
-Pastikan Node.js sudah terinstal:
+Make sure Node.js is installed:
 
 ```bash
 node -v
-# Output yang diharapkan: v20.x.x atau lebih
+# Expected output: v20.x.x or higher
 ```
 
 📥 [Download Node.js](https://nodejs.org)
 
 ---
 
-### 2. npm (v10 atau lebih tinggi)
+### 2. npm (v10 or higher)
 
-Pastikan juga npm sudah tersedia:
+Also, ensure npm is available:
 
 ```bash
 npm -v
-# Output yang diharapkan: v10.x.x atau lebih
+# Expected output: v10.x.x or higher
 ```
 
-> Bisa juga menggunakan package manager lain seperti `pnpm` atau `yarn` jika diinginkan.
+> You can also use other package managers like `pnpm` or `yarn` if desired.
 
 ---
 
-### 3. PostgreSQL Database (Lokal atau Remote)
+### 3. PostgreSQL Database (Local or Remote)
 
-Project ini menggunakan Prisma ORM yang memerlukan PostgreSQL.
+This project uses Prisma ORM which requires PostgreSQL.
 
-- Bisa pakai database lokal atau layanan seperti Supabase.
-- Setelah database tersedia, buat file `.env.local` di root project dengan format:
+- You can use a local database or services like Supabase.
+- Once the database is available, create a `.env.local` file in the root project with the following format:
 
 ```env
 DATABASE_URL="postgresql://username:password@localhost:5432/sea_catering"
@@ -118,37 +114,36 @@ NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your-secret-key
 ```
 
-🔒 env ada di pdf submission
+🔒 The env details are in the PDF submission.
 
 ---
 
 ### 4. Prisma CLI
 
-Setelah dependensi terinstal, jalankan perintah berikut untuk setup database:
+After the dependencies are installed, run the following commands to set up the database:
 
 ```bash
 npm run db:migrate   # Apply database schema
-npm run db:studio    # Buka Prisma Studio untuk eksplorasi data
+npm run db:studio    # Open Prisma Studio to explore data
 ```
 
 ---
 
 ### 5. Environment File (.env.local)
 
-Pastikan file `.env.local` sudah dibuat untuk menyimpan variabel environment seperti `DATABASE_URL` dan `NEXTAUTH_SECRET`.
-
+Ensure the `.env.local` file is created to store environment variables such as `DATABASE_URL` and `NEXTAUTH_SECRET`.
 
 ---
 
 ### 6. Package Installation
 
-Setelah semua environment siap, jalankan:
+Once all environments are set up, run:
 
 ```bash
 npm install
 ```
 
-Untuk menginstal semua dependency yang terdaftar di `package.json`.
+To install all dependencies listed in `package.json`.
 
 ---
 
