@@ -1,23 +1,22 @@
-import NextAuth from 'next-auth';
-import { AuthOptions } from 'next-auth';
-import { PrismaAdapter } from '@auth/prisma-adapter';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import bcrypt from 'bcryptjs';
-import { prisma } from '@/lib/prisma'; 
+import NextAuth from "next-auth";
+import { AuthOptions } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
+import { prisma } from "@/lib/prisma";
 
 export const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma), 
+  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
-      name: 'credentials',
+      name: "credentials",
       credentials: {
-        email: { label: 'Email', type: 'text' },
-        password: { label: 'Password', type: 'password' },
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         console.log("Login attempt:", credentials);
         if (!credentials?.email || !credentials?.password) {
-          console.log("⛔ No email or password provided");
           return null;
         }
         try {
@@ -26,12 +25,10 @@ export const authOptions: AuthOptions = {
           });
 
           if (!user) {
-            console.log("❌ User not found or password missing");
             return null;
           }
 
           if (!user.password) {
-            console.log("❌ User not found or password missing");
             return null;
           }
 
@@ -40,25 +37,22 @@ export const authOptions: AuthOptions = {
             user.password
           );
 
-          console.log("✅ Password match:", isCorrectPassword);
-
           if (!isCorrectPassword) {
             return null;
           }
 
           const { password, ...userWithoutPassword } = user;
           return userWithoutPassword;
-
         } catch (error) {
           return null;
         }
       },
     }),
   ],
-  
-  debug: process.env.NODE_ENV === 'development',
+
+  debug: process.env.NODE_ENV === "development",
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   callbacks: {
     jwt({ token, user }) {
@@ -74,10 +68,10 @@ export const authOptions: AuthOptions = {
         (session.user as any).role = token.role as string;
       }
       return session;
-    }
+    },
   },
   pages: {
-    signIn: '/auth/signin', 
+    signIn: "/auth/signin",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
