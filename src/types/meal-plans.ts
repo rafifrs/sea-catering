@@ -1,4 +1,3 @@
-// types/meal-plans.ts
 import { MealPlan, Meal } from '@prisma/client'
 
 export type MealPlanWithMeals = MealPlan & {
