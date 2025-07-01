@@ -30,7 +30,7 @@ export default function SubscriptionForm() {
     name: '',
     phone: '',
     planCategory: '',
-    subscriptionType: 'package',
+    subscriptionType: 'custom',
     days: [],
     selectedMeals: {
       breakfast: '',
@@ -77,7 +77,7 @@ export default function SubscriptionForm() {
   const calculatePrice = () => {
     const selectedPlan = getSelectedPlan();
     if (formData.subscriptionType === 'package' && selectedPlan) {
-      return calculatePackagePrice(selectedPlan.price, formData.days);
+      return calculatePackagePrice(selectedPlan.price);
     } else {
       return calculateCustomPrice(formData.days);
     }
@@ -141,7 +141,7 @@ export default function SubscriptionForm() {
           name: '',
           phone: '',
           planCategory: '',
-          subscriptionType: 'package',
+          subscriptionType: 'custom',
           days: [],
           selectedMeals: { breakfast: '', lunch: '', dinner: '' },
           allergies: '',
@@ -318,17 +318,6 @@ const canProceedToStep2 = formData.name.trim() && phoneIsValid;
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Choose Your Option</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div
-                onClick={() => handleInputChange('subscriptionType', 'package')}
-                className={`p-4 border-2 rounded-lg cursor-pointer ${
-                  formData.subscriptionType === 'package'
-                    ? 'border-orange-500 bg-orange-50'
-                    : 'border-gray-200'
-                }`}
-              >
-                <h4 className="font-bold text-gray-800">Package Plan</h4>
-                <p className="text-sm text-gray-600">Pre-selected menu with default meals</p>
-              </div>
               <div
                 onClick={() => handleInputChange('subscriptionType', 'custom')}
                 className={`p-4 border-2 rounded-lg cursor-pointer ${

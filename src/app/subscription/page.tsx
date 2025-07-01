@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import SubscriptionForm from './components/SubscriptionForm';
+import { Navbar } from '@/components/navbar/navbar';
 
 export default function SubscriptionPage() {
   const { data: session, status } = useSession();
@@ -35,7 +36,8 @@ export default function SubscriptionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-600 to-orange-500">
+    <div className="min-h-screen bg-gradient-to-br from-orange-600 to-orange-500 mt-24">
+      <Navbar />
       <div className="bg-white shadow-sm border-b border-orange-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
@@ -44,10 +46,6 @@ export default function SubscriptionPage() {
               <p className="text-gray-600 mt-2">
                 Customize your meal plan and start your healthy journey today
               </p>
-            </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-500">Welcome back,</p>
-              <p className="font-semibold text-gray-800">{session?.user?.name || session?.user?.email}</p>
             </div>
           </div>
         </div>

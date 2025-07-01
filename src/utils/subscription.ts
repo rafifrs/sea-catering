@@ -5,8 +5,8 @@ export function calculateCustomPrice(days: string[]): number {
   return dailyPrice * days.length;
 }
 
-export function calculatePackagePrice(packagePrice: number, days: string[]): number {
-  return packagePrice * days.length;
+export function calculatePackagePrice(packagePrice: number): number {
+  return packagePrice;
 }
 
 export function formatPrice(price: number): string {
