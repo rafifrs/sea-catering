@@ -118,7 +118,7 @@ NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your-secret-key
 ```
 
-🔒 Gantilah `username`, `password`, dan `your-secret-key` sesuai environment kamu.
+🔒 env ada di pdf submission
 
 ---
 
