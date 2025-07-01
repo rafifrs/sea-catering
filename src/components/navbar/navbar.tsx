@@ -28,8 +28,13 @@ export function Navbar() {
   const [activeHash, setActiveHash] = useState("");
   const router = useRouter();
 
-  const navLinks =
-    status === "authenticated" ? authenticatedNavLinks : publicNavLinks;
+  // Tentukan navLinks berdasarkan role
+  const navLinks = 
+    status === "authenticated" && session?.user?.role === "ADMIN" 
+      ? [] // Admin tidak punya nav links
+      : status === "authenticated" 
+      ? authenticatedNavLinks 
+      : publicNavLinks;
 
   const handleDashboardClick = () => {
     if (!session?.user?.role) return;
@@ -50,6 +55,59 @@ export function Navbar() {
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, [pathname]);
 
+  // Jika user adalah admin, render navbar khusus admin
+  if (status === "authenticated" && session?.user?.role === "ADMIN") {
+    return (
+      <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+        <nav className="flex w-full max-w-6xl items-center justify-between rounded-full bg-white/95 backdrop-blur-md border border-orange-200/50 px-6 py-4 shadow-xl shadow-orange-500/10">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="bg-gradient-to-r from-[#fb9333] to-orange-600 p-2 rounded-lg">
+                <span className="text-white font-bold text-lg">SEA</span>
+              </div>
+              <h1 className="font-bold text-xl text-gray-900 hidden sm:block">
+                Catering
+              </h1>
+            </Link>
+          </div>
+
+          {/* Center Dashboard Button */}
+          <div className="flex items-center">
+            <Button
+              onClick={handleDashboardClick}
+              className="bg-gradient-to-r from-[#fb9333] to-orange-600 hover:from-orange-600 hover:to-[#fb9333] text-white font-semibold px-6 py-2 rounded-lg shadow-lg shadow-orange-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105"
+            >
+              <LayoutDashboard className="h-4 w-4 mr-2" />
+              Dashboard
+            </Button>
+          </div>
+
+          {/* Right Side - User Info & Logout */}
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-gray-700 hidden sm:block">
+              Hi, {session?.user?.name || "Admin"}!
+            </span>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="flex items-center gap-1 text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-300"
+              onClick={() => {
+                if (confirm("Are you sure you want to log out?")) {
+                  signOut();
+                }
+              }}
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="text-sm hidden sm:block">Log Out</span>
+            </Button>
+          </div>
+        </nav>
+      </div>
+    );
+  }
+
+  // Navbar default untuk user biasa dan guest
   return (
     <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
       <nav className="flex w-full max-w-6xl items-center justify-between rounded-full bg-white/95 backdrop-blur-md border border-orange-200/50 px-6 py-4 shadow-xl shadow-orange-500/10">
@@ -63,6 +121,18 @@ export function Navbar() {
               Catering
             </h1>
           </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2"
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
 
         {/* Desktop Navigation Links */}
@@ -90,7 +160,7 @@ export function Navbar() {
                 );
               })}
 
-              {/* Tombol Dashboard untuk semua user login */}
+              {/* Tombol Dashboard untuk user login (bukan admin) */}
               <Button
                 onClick={handleDashboardClick}
                 className="bg-gradient-to-r from-[#fb9333] to-orange-600 hover:from-orange-600 hover:to-[#fb9333] text-white font-semibold px-6 py-2 rounded-lg shadow-lg shadow-orange-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105"
