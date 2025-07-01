@@ -10,8 +10,8 @@ const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#review', label: 'Review' },
   { href: '#contact', label: 'Contact' },
-  { href: '#subscription', label: 'Subscription' },
-  { href: '/menu', label: 'Menu' },
+  { href: '/subscription', label: 'Subscription' },
+  { href: '/meal-plans', label: 'Menu' },
 ];
 
 export function Navbar() {

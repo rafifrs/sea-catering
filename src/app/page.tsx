@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ChefHat, Leaf, Phone, Star, Truck, UserCircle2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PrismaClient } from "@prisma/client";
+import { TestimonialForm } from "@/components/testimonial-form/testimonial-form";
 
 const prisma = new PrismaClient();
 
@@ -99,13 +100,13 @@ export default async function Home() {
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-orange-200 to-orange-300 rounded-3xl blur-2xl opacity-30"></div>
                 <Image
-                  src="/hero2.png"
+                  src="/heroo2.png"
                   alt="Delicious and healthy meal from SEA Catering"
                   width={450}
                   height={450}
                   className="relative rounded-2xl shadow-2xl object-cover w-full h-auto transform hover:scale-105 transition-transform duration-500 border-4 border-white"
                 />
-                <div className="absolute -top-4 -right-4 bg-orange-400 text-white px-4 py-2 rounded-full text-2xl font-bold shadow-lg">
+                <div className="absolute -top-4 -center-4 bg-orange-400 text-white px-4 py-2 rounded-full text-2xl font-bold shadow-lg">
                   Fresh Daily
                 </div>
               </div>
@@ -223,23 +224,37 @@ export default async function Home() {
       </section>
 
       <section id="contact" className="py-20 px-4 bg-gradient-to-r from-[#fb9333] via-orange-500 to-amber-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="container mx-auto text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
-            Have Questions?
-          </h2>
-          <p className="text-xl mb-8 text-white/95 drop-shadow">
-            Our manager is ready to assist you with any inquiries.
-          </p>
-          <div className="inline-flex items-center gap-6 bg-white/20 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-xl border border-white/30">
-            <div className="bg-white/20 p-3 rounded-full">
-              <Phone className="h-8 w-8" />
+        <div className="container mx-auto relative z-10 max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            {/* Contact Info */}
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
+                  Have Questions?
+                </h2>
+                <p className="text-xl mb-8 text-white/95 drop-shadow">
+                  Our manager is ready to assist you with any inquiries.
+                </p>
+              </div>
+              
+              <div className="inline-flex items-center gap-6 bg-white/20 backdrop-blur-sm px-8 py-6 rounded-2xl shadow-xl border border-white/30">
+                <div className="bg-white/20 p-3 rounded-full">
+                  <Phone className="h-8 w-8" />
+                </div>
+                <div className="text-left">
+                  <span className="block text-lg font-medium text-white/90">Manager: Brian</span>
+                  <a href="tel:08123456789" className="block text-2xl font-bold hover:underline hover:text-white/80 transition-colors">
+                    08123456789
+                  </a>
+                </div>
+              </div>
             </div>
-            <div className="text-left">
-              <span className="block text-lg font-medium text-white/90">Manager: Brian</span>
-              <a href="tel:08123456789" className="block text-2xl font-bold hover:underline hover:text-white/80 transition-colors">
-                08123456789
-              </a>
+            
+            {/* Testimonial Form */}
+            <div className="flex justify-center lg:justify-start">
+              <div className="w-full max-w-md">
+                <TestimonialForm />
+              </div>
             </div>
           </div>
         </div>
