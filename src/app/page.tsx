@@ -6,6 +6,7 @@ import { ChefHat, Leaf, Phone, Star, Truck, UserCircle2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PrismaClient } from "@prisma/client";
 import { TestimonialForm } from "@/components/testimonial-form/testimonial-form";
+import { CTAButtons } from "@/components/ctabuttons/ctabuttons";
 
 const prisma = new PrismaClient();
 
@@ -88,12 +89,7 @@ export default async function Home() {
                 enjoying delicious, nutritious food tailored just for you.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <button className="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                  Get Started Today
-                </button>
-                <button className="border-2 border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white font-semibold py-3 px-8 rounded-full transition-all duration-300">
-                  View Menu
-                </button>
+                <CTAButtons />
               </div>
             </div>
             <div className="flex justify-center">

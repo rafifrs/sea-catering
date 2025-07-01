@@ -5,6 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import { getSession } from 'next-auth/react';
 
 export type SignInForm = z.infer<typeof SignInSchema>;
 
@@ -48,12 +49,24 @@ export function useSignIn({ router }: { router: AppRouterInstance }) {
       return { loadingToast };
     },
 
-    onSuccess: (_data, _variables, context) => {
+    onSuccess: async (_data, _variables, context) => {
       toast.dismiss(context.loadingToast);
       toast.success('Berhasil masuk', {
         description: 'Selamat datang kembali',
       });
-      router.push('/');
+    
+      const session = await getSession();
+    
+      if (!session?.user?.role) {
+        router.push('/');
+        return;
+      }
+    
+      if (session.user.role === 'ADMIN') {
+        router.push('/dashboard/admin');
+      } else {
+        router.push('/dashboard/user');
+      }
     },
 
     onError: (error, _variables, context) => {

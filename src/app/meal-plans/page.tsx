@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import MealPlanCard from './components/MealPlanCard'
 import MealPlanModal from './components/MealPlanModal'
 import { MealPlanWithMeals } from '@/types/meal-plans'
+import { Navbar } from '@/components/navbar/navbar'
 
 const MealPlansPage: React.FC = () => {
   const [mealPlans, setMealPlans] = useState<MealPlanWithMeals[]>([])
@@ -122,13 +123,14 @@ const MealPlansPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
+        <Navbar />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <h1 className="text-5xl font-bold text-white mb-4">Our Meal Plans</h1>
+            <h1 className="text-5xl font-bold text-white mb-4 mt-20">Our Meal Plans</h1>
             <p className="text-xl text-orange-100">Choose the perfect meal plan for your lifestyle and goals</p>
           </motion.div>
         </div>

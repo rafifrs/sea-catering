@@ -15,7 +15,9 @@ export const authOptions: AuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
+        console.log("Login attempt:", credentials);
         if (!credentials?.email || !credentials?.password) {
+          console.log("⛔ No email or password provided");
           return null;
         }
         try {
@@ -24,10 +26,12 @@ export const authOptions: AuthOptions = {
           });
 
           if (!user) {
+            console.log("❌ User not found or password missing");
             return null;
           }
 
           if (!user.password) {
+            console.log("❌ User not found or password missing");
             return null;
           }
 
@@ -35,6 +39,8 @@ export const authOptions: AuthOptions = {
             credentials.password,
             user.password
           );
+
+          console.log("✅ Password match:", isCorrectPassword);
 
           if (!isCorrectPassword) {
             return null;
