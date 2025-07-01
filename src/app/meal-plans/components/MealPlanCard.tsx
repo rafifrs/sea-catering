@@ -1,4 +1,3 @@
-// meal-plans/components/MealPlanCard.tsx
 import React, { useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -7,7 +6,6 @@ import { Clock, Users, Star, Heart, Eye, ChefHat } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { MealPlanCardProps } from '@/types/meal-plans'
 
-// Extended props to include viewMode
 interface EnhancedMealPlanCardProps extends MealPlanCardProps {
   viewMode?: 'grid' | 'list'
 }

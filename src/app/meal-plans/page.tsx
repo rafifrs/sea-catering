@@ -1,10 +1,9 @@
 'use client'
 
-// meal-plans/page.tsx
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Search, Filter, Grid, List, SortAsc, SortDesc } from 'lucide-react'
+import { Search, Filter, Grid, List, SortAsc, SortDesc, Route } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import MealPlanCard from './components/MealPlanCard'
 import MealPlanModal from './components/MealPlanModal'
@@ -51,10 +50,8 @@ const MealPlansPage: React.FC = () => {
     setSelectedMealPlan(null)
   }
 
-  // Get unique categories for filter
   const categories = ['All', ...Array.from(new Set(mealPlans.map(plan => plan.category)))]
 
-  // Filter and search meal plans
   const filteredMealPlans = mealPlans
     .filter(plan => {
       const matchesCategory = filter === 'All' || plan.category === filter
@@ -85,6 +82,10 @@ const MealPlansPage: React.FC = () => {
       setSortBy(field)
       setSortOrder('asc')
     }
+  }
+
+  const handleBackToMainPage = () => {
+   window.location.href = '/';
   }
 
   if (loading) {
@@ -284,6 +285,13 @@ const MealPlansPage: React.FC = () => {
           )}
         </AnimatePresence>
       </div>
+
+      <Button 
+          onClick={() => handleBackToMainPage()}
+          className="bg-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-full mb-6 justify-center items-center mx-auto flex px-6 py-3"
+        >
+          Back
+      </Button>
 
       {/* Modal */}
       <MealPlanModal

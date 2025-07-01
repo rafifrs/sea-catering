@@ -1,4 +1,3 @@
-// meal-plans/components/MealPlanModal.tsx
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -46,13 +45,11 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ mealPlan, isOpen, onClose
   }, {} as Record<string, Meal[]>)
 
   const handleShare = () => {
-    // Implement share functionality
     navigator.share?.({
       title: mealPlan.name,
       text: mealPlan.description,
       url: window.location.href
     }).catch(() => {
-      // Fallback for browsers that don't support Web Share API
       navigator.clipboard.writeText(window.location.href)
     })
   }
